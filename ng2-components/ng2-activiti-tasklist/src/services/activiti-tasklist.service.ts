@@ -20,6 +20,7 @@ import { AlfrescoSettingsService } from 'ng2-alfresco-core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { FilterModel } from '../models/filter.model';
+import { TaskDetailsModel } from '../models/task-details.model';
 
 @Injectable()
 export class ActivitiTaskListService {
@@ -45,14 +46,31 @@ export class ActivitiTaskListService {
      */
     getTasks(filter: FilterModel): Observable<any> {
         let data: any = {};
-        data.filterId = filter.id;
-        data.filter = filter.filter;
+        // data.filterId = filter.id;
+        // data.filter = filter.filter;
+        data = filter.filter;
+        data.text = filter.filter.name;
         data = JSON.stringify(data);
+
 
         return Observable.fromPromise(this.callApiTasksFiltered(data))
             .map((res: Response) => {
                 return res.json();
             })
+            .catch(this.handleError);
+    }
+
+    getTaskDetails(id: string): Observable<TaskDetailsModel> {
+        return Observable.fromPromise(this.callApiTaskDetails(id))
+            .map(res => res.json())
+            .map((details: any) => {
+                return new TaskDetailsModel(details);
+            })
+            .catch(this.handleError);
+    }
+
+    completeTask(id: string): Observable<TaskDetailsModel> {
+        return Observable.fromPromise(this.callApiCompleteTask(id))
             .catch(this.handleError);
     }
 
@@ -62,6 +80,7 @@ export class ActivitiTaskListService {
             'Content-Type': 'application/json',
             'Cache-Control': 'no-cache'
         });
+        // let body = JSON.stringify(data);
         let options = new RequestOptions({headers: headers});
 
         return this.http
@@ -78,6 +97,19 @@ export class ActivitiTaskListService {
 
         return this.http
             .get(url, options).toPromise();
+    }
+
+    private callApiCompleteTask(id: string) {
+        let url = `${this.basePath}/api/enterprise/tasks/${id}/action/complete`;
+        // let url = `http://localhost:9999/activiti-app/app/rest/tasks/${id}/action/complete`;
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache'
+        });
+        let options = new RequestOptions({headers: headers});
+
+        return this.http
+            .put(url, options).toPromise();
     }
 
 
