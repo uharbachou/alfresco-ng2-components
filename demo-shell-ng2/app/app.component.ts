@@ -70,11 +70,30 @@ export class AppComponent {
                 public router: Router,
                 translate: AlfrescoTranslationService,
                 public alfrescoSettingsService: AlfrescoSettingsService) {
+
         this.setEcmHost();
         this.setBpmHost();
 
         this.translate = translate;
         this.translate.addTranslationFolder();
+    }
+
+    private setEcmHost(){
+        if(localStorage.getItem(`ecmHost`)){
+            this.alfrescoSettingsService.ecmHost = localStorage.getItem(`ecmHost`);
+            this.ecmHost = localStorage.getItem(`ecmHost`);
+        }else{
+            this.alfrescoSettingsService.ecmHost = this.ecmHost;
+        }
+    }
+
+    private setBpmHost(){
+        if(localStorage.getItem(`bpmHost`)){
+            this.alfrescoSettingsService.bpmHost = localStorage.getItem(`bpmHost`);
+            this.bpmHost = localStorage.getItem(`bpmHost`);
+        }else{
+            this.alfrescoSettingsService.bpmHost = this.bpmHost;
+        }
     }
 
     public onChangeECMHost(event: KeyboardEvent): void {

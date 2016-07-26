@@ -75,7 +75,8 @@ export class ActivitiTaskListService {
     }
 
     private callApiTasksFiltered(data: Object) {
-        let url = this.alfrescoSettingsService.getBPMApiBaseUrl() + '/rest/filter/tasks';
+        let url = `${this.alfrescoSettingsService.bpmHost}/activiti-app/api/enterprise/tasks/query`;
+        // let url = 'http://localhost:9999/activiti-app/app/rest/filter/tasks';
         let headers = new Headers({
             'Content-Type': 'application/json',
             'Cache-Control': 'no-cache'
@@ -88,7 +89,21 @@ export class ActivitiTaskListService {
     }
 
     private callApiTaskFilters() {
-        let url = this.alfrescoSettingsService.getBPMApiBaseUrl() + '/rest/filters/tasks';
+        let url = `${this.alfrescoSettingsService.bpmHost}/activiti-app/api/enterprise/filters/tasks`;
+        // let url = 'http://localhost:9999/activiti-app/app/rest/filters/tasks';
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache'
+        });
+        let options = new RequestOptions({headers: headers});
+
+        return this.http
+            .get(url, options).toPromise();
+    }
+
+    private callApiTaskDetails(id: string) {
+        let url = `${this.alfrescoSettingsService.bpmHost}/activiti-app/api/enterprise/tasks/${id}`;
+        // let url = 'http://localhost:9999/activiti-app/app/rest/tasks/' + id;
         let headers = new Headers({
             'Content-Type': 'application/json',
             'Cache-Control': 'no-cache'
@@ -100,7 +115,7 @@ export class ActivitiTaskListService {
     }
 
     private callApiCompleteTask(id: string) {
-        let url = `${this.basePath}/api/enterprise/tasks/${id}/action/complete`;
+        let url = `${this.alfrescoSettingsService.bpmHost}/activiti-app/api/enterprise/tasks/${id}/action/complete`;
         // let url = `http://localhost:9999/activiti-app/app/rest/tasks/${id}/action/complete`;
         let headers = new Headers({
             'Content-Type': 'application/json',

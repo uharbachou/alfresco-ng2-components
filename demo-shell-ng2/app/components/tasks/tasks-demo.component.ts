@@ -67,6 +67,7 @@ export class TasksDemoComponent implements OnInit {
     currentTaskId: string;
 
     data: ObjectDataTableAdapter;
+
     constructor() {
         this.data = new ObjectDataTableAdapter([], []);
     }
