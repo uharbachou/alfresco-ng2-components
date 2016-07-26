@@ -26,7 +26,10 @@ import { ObjectDataTableAdapter, ObjectDataColumn } from 'ng2-alfresco-datatable
     template: `
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--2-col"
-      style="background-color: #ececec; padding: 10px 10px 10px 10px; border-left: solid 2px rgb(31,188,210); border-right : solid       2px rgb(31,188,210);">
+      style="background-color:#ececec;
+             padding:10px 10px 10px 10px;
+             border-left:solid 2px rgb(31,188,210);
+             border-right : solid 2px rgb(31,188,210);">
         <ul class="demo-list-item mdl-list">
           <li class="mdl-list__item">
             <span class="mdl-list__item-primary-content">
@@ -47,15 +50,20 @@ import { ObjectDataTableAdapter, ObjectDataColumn } from 'ng2-alfresco-datatable
         </ul>
       </div>
       <div class="mdl-cell mdl-cell--3-col"
-            style="background-color: #ececec; padding: 10px 10px 10px 10px; border-left: solid 2px rgb(31,188,210); border-right : solid       2px rgb(31,188,210);">
+            style="background-color: #ececec;
+            padding: 10px 10px 10px 10px;
+            border-left: solid 2px rgb(31,188,210);
+            border-right : solid 2px rgb(31,188,210);">
             <activiti-tasklist *ngIf="isTaskListSelected()" [data]="data" (rowClick)="onRowClick($event)"></activiti-tasklist>
       </div>
       <div class="mdl-cell mdl-cell--7-col"
-            style="background-color: #ececec; padding: 10px 10px 10px 10px; border-left: solid 2px rgb(31,188,210); border-right : solid       2px rgb(31,188,210);">
+            style="background-color: #ececec;
+                   padding: 10px 10px 10px 10px;
+                   border-left: solid 2px rgb(31,188,210);
+                   border-right : solid 2px rgb(31,188,210);">
         <activiti-task-details [taskId]="currentTaskId"></activiti-task-details>
       </div>
     </div>
-
     `,
     directives: [ALFRESCO_TASKLIST_DIRECTIVES, ActivitiForm],
     styles: [':host > .container { padding: 10px; }']

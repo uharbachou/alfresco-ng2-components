@@ -78,24 +78,6 @@ export class AppComponent {
         this.translate.addTranslationFolder();
     }
 
-    private setEcmHost(){
-        if(localStorage.getItem(`ecmHost`)){
-            this.alfrescoSettingsService.ecmHost = localStorage.getItem(`ecmHost`);
-            this.ecmHost = localStorage.getItem(`ecmHost`);
-        }else{
-            this.alfrescoSettingsService.ecmHost = this.ecmHost;
-        }
-    }
-
-    private setBpmHost(){
-        if(localStorage.getItem(`bpmHost`)){
-            this.alfrescoSettingsService.bpmHost = localStorage.getItem(`bpmHost`);
-            this.bpmHost = localStorage.getItem(`bpmHost`);
-        }else{
-            this.alfrescoSettingsService.bpmHost = this.bpmHost;
-        }
-    }
-
     public onChangeECMHost(event: KeyboardEvent): void {
         console.log((<HTMLInputElement>event.target).value);
         this.ecmHost = (<HTMLInputElement>event.target).value;
@@ -109,6 +91,8 @@ export class AppComponent {
         this.alfrescoSettingsService.bpmHost = this.bpmHost;
         localStorage.setItem(`bpmHost`, this.bpmHost);
     }
+
+
 
     isActive(instruction: any[]): boolean {
         return this.router.isRouteActive(this.router.generate(instruction));
