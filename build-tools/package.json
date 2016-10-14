@@ -1,0 +1,12 @@
+{
+  "name": "alfresco-build-tools",
+  "version": "1.0.0",
+  "description": "Build tools for Alfresco Angular 2 components.",
+  "main": "index.js",
+  "author": "Denys Vuika <denys.vuika@gmail.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alfresco/alfresco-ng2-components.git"
+  }
+}

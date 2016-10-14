@@ -10,6 +10,8 @@ build_project() {
     npm run build
 }
 
+build_project "$DIR/../build-tools" "Build Tools"
+
 for PACKAGE in \
   ng2-activiti-analytics \
   ng2-activiti-form \

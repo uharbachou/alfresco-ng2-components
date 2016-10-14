@@ -97,7 +97,8 @@
     "typescript": "^2.0.3",
     "wsrv": "^0.1.5",
     "xo": "0.14.0",
-    "yargs": "4.7.0"
+    "yargs": "4.7.0",
+    "alfresco-build-tools": "^1.0.0"
   },
   "license-check-config": {
     "src": [
