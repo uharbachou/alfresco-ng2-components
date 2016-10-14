@@ -35,6 +35,7 @@ env:
     - MODULE=ng2-alfresco-userinfo
 
 before_script:
+  (cd build-tools; npm install; npm link);
   - if ([ "$MODULE" != "ng2-alfresco-core" ]); then
         (cd ng2-components/ng2-alfresco-core; npm install; npm link);
     fi
@@ -60,6 +61,7 @@ before_script:
   - if ([ "$MODULE" == "ng2-activiti-processlist" ]); then
         npm link ng2-activiti-tasklist;
     fi
+  - npm link alfresco-build-tools;
   - npm install;
   - npm run travis
   - ls -ltrh ./node_modules/
