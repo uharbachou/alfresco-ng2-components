@@ -35,7 +35,7 @@ env:
     - MODULE=ng2-alfresco-userinfo
 
 before_script:
-  (cd build-tools; npm install; npm link);
+  - (cd build-tools; npm install; npm link);
   - if ([ "$MODULE" != "ng2-alfresco-core" ]); then
         (cd ng2-components/ng2-alfresco-core; npm install; npm link);
     fi
