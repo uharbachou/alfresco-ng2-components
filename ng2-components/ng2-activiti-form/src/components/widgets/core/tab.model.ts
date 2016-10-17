@@ -21,7 +21,6 @@ import { FormModel } from './form.model';
 
 export class TabModel extends FormWidgetModel {
 
-    id: string;
     title: string;
     isVisible: boolean = true;
     visibilityCondition: any;
@@ -36,7 +35,6 @@ export class TabModel extends FormWidgetModel {
         super(form, json);
 
         if (json) {
-            this.id = json.id;
             this.title = json.title;
             this.visibilityCondition = json.visibilityCondition;
         }

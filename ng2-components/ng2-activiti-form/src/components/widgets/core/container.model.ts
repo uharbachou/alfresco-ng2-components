@@ -22,14 +22,8 @@ import { FormFieldTypes } from './form-field-types';
 import { FormModel } from './form.model';
 import { FormFieldModel } from './form-field.model';
 
-// TODO: inherit FormFieldModel
 export class ContainerModel extends FormWidgetModel {
 
-    fieldType: string;
-    id: string;
-    name: string;
-    type: string;
-    tab: string;
     numberOfColumns: number = 1;
     params: FormFieldMetadata = {};
 
@@ -64,11 +58,6 @@ export class ContainerModel extends FormWidgetModel {
         super(form, json);
 
         if (json) {
-            this.fieldType = json.fieldType;
-            this.id = json.id;
-            this.name = json.name;
-            this.type = json.type;
-            this.tab = json.tab;
             this.numberOfColumns = <number> json.numberOfColumns;
             this.params = <FormFieldMetadata> json.params || {};
 
