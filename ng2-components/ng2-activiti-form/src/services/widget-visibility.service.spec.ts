@@ -27,7 +27,7 @@ import { WidgetVisibilityService } from './widget-visibility.service';
 import { AlfrescoSettingsService, AlfrescoAuthenticationService, AlfrescoApiService } from 'ng2-alfresco-core';
 import { TaskProcessVariableModel } from '../models/task-process-variable.model';
 import { WidgetVisibilityModel } from '../models/widget-visibility.model';
-import { FormModel, FormFieldModel } from '../components/widgets/core/index';
+import { FormModel, FormFieldModel, ContainerModel } from '../components/widgets/core/index';
 
 declare let jasmine: any;
 
@@ -613,13 +613,18 @@ describe('WidgetVisibilityService (mockBackend)', () => {
             visibilityObjTest.leftFormFieldId = 'FIELD_TEST';
             visibilityObjTest.operator = '!=';
             visibilityObjTest.rightFormFieldId = 'RIGHT_FORM_FIELD_ID';
-            fakeFormWithField.fields[0].columns[0].fields[0].visibilityCondition = visibilityObjTest;
+
+            let container = <ContainerModel> fakeFormWithField.fields[0];
+            let column0 = container.columns[0];
+            let column1 = container.columns[1];
+
+            column0.fields[0].visibilityCondition = visibilityObjTest;
             service.refreshVisibility(fakeFormWithField);
 
-            expect(fakeFormWithField.fields[0].columns[0].fields[0].isVisible).toBeFalsy();
-            expect(fakeFormWithField.fields[0].columns[0].fields[1].isVisible).toBeTruthy();
-            expect(fakeFormWithField.fields[0].columns[0].fields[2].isVisible).toBeTruthy();
-            expect(fakeFormWithField.fields[0].columns[1].fields[0].isVisible).toBeTruthy();
+            expect(column0.fields[0].isVisible).toBeFalsy();
+            expect(column0.fields[1].isVisible).toBeTruthy();
+            expect(column0.fields[2].isVisible).toBeTruthy();
+            expect(column1.fields[0].isVisible).toBeTruthy();
         });
     });
 });
